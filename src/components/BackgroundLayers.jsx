@@ -27,9 +27,9 @@ export default function BackgroundLayers() {
 
   return (
     <>
-      {/* Background Aura */}
+      {/* Background Aura / Video Component */}
       <div
-        className="aura-background-component top-0 w-full h-screen z-0 brightness-50 saturate-50 fixed blur-sm pointer-events-none"
+        className="aura-background-component top-0 w-full h-screen z-0 brightness-50 saturate-50 fixed pointer-events-none"
         data-alpha-mask="80"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)',
@@ -54,7 +54,7 @@ export default function BackgroundLayers() {
         </div>
       </div>
 
-      {/* Background Grid */}
+      {/* High-Performance SVG Grid Overlay */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
         <div className="absolute inset-0 opacity-[0.03]">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">

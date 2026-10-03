@@ -4,9 +4,9 @@ import { Icon } from '@iconify/react';
 
 export default function ComparisonSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-24 relative">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-28 relative">
       <div
-        className="rounded-3xl border-gradient p-6 sm:p-8 relative backdrop-blur"
+        className="rounded-3xl border-gradient p-6 sm:p-10 relative backdrop-blur"
         style={{
           background: 'linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%)',
           borderRadius: '24px'
@@ -14,9 +14,9 @@ export default function ComparisonSection() {
       >
         {/* Header */}
         <div className="flex gap-6 pr-1 pl-1 items-center [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll animate">
-          <h2 className="text-[44px] sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.9] text-white tracking-tighter">The problem.</h2>
+          <h2 className="text-[44px] sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.98] text-white tracking-[-0.03em]">The problem.</h2>
           <span aria-hidden="true" role="separator" aria-orientation="vertical" className="w-px bg-white/20 h-10"></span>
-          <p className="sm:text-base text-sm text-slate-300 mt-1 tracking-tight">How Vyntic solves high-assurance enterprise &amp; government challenges</p>
+          <p className="sm:text-base text-sm text-slate-300 mt-1 tracking-tight">How Vyntiq solves high-assurance enterprise &amp; government challenges</p>
         </div>
         <div className="h-px bg-white/20 mt-4"></div>
 
@@ -52,8 +52,8 @@ export default function ComparisonSection() {
                 </div>
               </div>
             </div>
-            <h3 className="mt-6 text-3xl sm:text-4xl text-white tracking-tighter">Uncontrolled Cloud AI &amp; Data Leakage</h3>
-            <p className="mt-2 text-sm sm:text-base text-neutral-300 max-w-[52ch] tracking-tight">Generic cloud AI models expose sensitive government and corporate data to third-party providers, violating national sovereignty and data protection mandates.</p>
+            <h3 className="mt-6 text-2xl sm:text-3xl text-white tracking-tight font-bold">Uncontrolled Cloud AI &amp; Data Leakage</h3>
+            <p className="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed">Generic cloud AI models expose sensitive government and corporate data to third-party providers, violating national sovereignty and data protection mandates.</p>
           </div>
 
           {/* PROBLEM 2 */}
@@ -110,8 +110,8 @@ export default function ComparisonSection() {
                 </div>
               </div>
             </div>
-            <h3 className="mt-6 text-3xl sm:text-4xl text-white tracking-tighter">Statutory DPDP Non-Compliance</h3>
-            <p className="mt-2 text-sm sm:text-base text-neutral-300 max-w-[52ch] tracking-tight">Failure to comply with India's DPDP Act 2023 and global privacy frameworks leads to massive statutory penalties, reputational damage, and operational freezes.</p>
+            <h3 className="mt-6 text-2xl sm:text-3xl text-white tracking-tight font-bold">Statutory DPDP Non-Compliance</h3>
+            <p className="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed">Failure to comply with India's DPDP Act 2023 and global privacy frameworks leads to massive statutory penalties up to ₹250 Cr, reputational damage, and operational freezes.</p>
           </div>
 
           {/* SOLUTION */}
@@ -122,7 +122,7 @@ export default function ComparisonSection() {
             }}
           >
             <span className="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-blue-400/30 bg-neutral-950 text-xs sm:text-sm text-blue-300 tracking-tight" style={{ borderRadius: '9999px' }}>
-              VYNTIC SOLUTION
+              VYNTIQ SOLUTION
             </span>
             <div className="relative h-48 sm:h-56 rounded-2xl bg-white/5 border border-blue-400/20 overflow-hidden p-4 flex items-center justify-center">
               <div className="w-full h-full rounded-xl overflow-hidden bg-neutral-900/80 border border-blue-400/10 p-3 flex flex-col justify-between">
@@ -160,8 +160,8 @@ export default function ComparisonSection() {
                 </div>
               </div>
             </div>
-            <h3 className="mt-6 text-3xl sm:text-4xl text-white tracking-tighter">Sovereign Architecture &amp; DPDP Shield</h3>
-            <p className="mt-2 text-sm sm:text-base text-neutral-300 max-w-[52ch] tracking-tight">Vyntic delivers 100% air-gapped on-premise AI deployments with automated DPDP consent governance and cryptographic chain of custody for all video and contract data.</p>
+            <h3 className="mt-6 text-2xl sm:text-3xl text-white tracking-tight font-bold">Sovereign Architecture &amp; DPDP Shield</h3>
+            <p className="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed">Vyntiq delivers 100% air-gapped on-premise AI deployments with automated DPDP consent governance and cryptographic chain of custody for all video and contract data.</p>
           </div>
         </div>
       </div>

@@ -1,57 +1,87 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import { ArrowRight, Cpu } from 'lucide-react';
 
-export default function Hero() {
+export default function Hero({ onPartnerClick, onContactClick }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pb-24 lg:pt-24">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pb-24 lg:pt-20">
       {/* Pill */}
       <div className="mx-auto w-fit mb-6 [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll animate">
-        <div className="inline-flex items-center gap-2 rounded-full border-gradient bg-white/5 px-3 py-1.5 text-xs text-neutral-300" style={{ borderRadius: '9999px' }}>
-          <span className="inline-flex items-center justify-center rounded-full bg-blue-400/20 text-blue-300 px-2 py-0.5">
-            New
+        <div
+          className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs text-neutral-300 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)] ring-1 ring-white/5"
+          style={{ borderRadius: '9999px' }}
+        >
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 text-blue-300 px-2.5 py-0.5 text-[11px] font-semibold tracking-wider uppercase border border-blue-400/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+            Sovereign AI Suite
           </span>
-          <span className="font-medium">Enterprise &amp; Government AI</span>
-          <Icon icon="solar:star-fall-minimalistic-2-bold-duotone" width="14" height="14" style={{ color: 'rgb(96, 165, 250)' }} />
+          <span className="font-medium tracking-tight text-neutral-200">High-Assurance Enterprise &amp; Government AI</span>
+          <Icon icon="solar:star-fall-minimalistic-2-bold-duotone" width="14" height="14" className="text-blue-400" />
         </div>
       </div>
 
       {/* Heading */}
       <div className="[animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll text-center animate">
-        <h1 className="mx-auto max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter">
-          Intelligence you can trust enough to build on.
+        <h1
+          className="mx-auto max-w-5xl text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-[650] tracking-[-0.032em] leading-[1.04] text-white"
+          style={{ textWrap: 'balance' }}
+        >
+          <span className="text-white">
+            Intelligence you can
+          </span>{' '}
+          <span className="font-medium text-blue-200 px-1">
+            trust
+          </span>{' '}
+          <br className="hidden sm:inline" />
+          <span className="text-neutral-200">
+            enough to build on.
+          </span>
         </h1>
-        <p className="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-neutral-300">
-          Vyntic builds sovereign computer vision intelligence, statutory DPDP compliance platforms, and governance AI engineered for national security, public safety institutions, and high-assurance enterprises.
+
+        <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-neutral-300/90 font-normal leading-[1.7] tracking-[0.004em]">
+          Vyntiq engineers <span className="text-white font-medium">sovereign computer vision intelligence</span>, sub-second <span className="text-white font-medium">video forensics</span>, and statutory <span className="text-white font-medium">DPDP compliance</span> platforms engineered for national defense, law enforcement, and high-assurance enterprises.
         </p>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-3 mt-8 items-center justify-center">
+        {/* Hero CTA Button Bar */}
+        <div className="flex flex-col sm:flex-row gap-4 mt-10 items-center justify-center">
+          {/* Button 1: Primary Action (White Pill) */}
           <a
             href="#products"
-            className="inline-flex items-center gap-2 rounded-full bg-white text-neutral-900 px-6 py-3 text-sm font-semibold shadow-[0_1px_0_0_rgba(255,255,255,0.4)_inset,0_1px_2px_rgba(0,0,0,0.2)] hover:-translate-y-0.5 transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-neutral-950 px-8 py-3.5 text-sm font-semibold shadow-[0_2px_16px_rgba(255,255,255,0.25)] hover:bg-neutral-100 hover:shadow-[0_4px_24px_rgba(255,255,255,0.35)] hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer select-none group"
             style={{ borderRadius: '9999px' }}
           >
-            Explore Solutions
+            <span>Explore Sovereign Solutions</span>
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </a>
 
-          <div className="inline-block group relative">
-            <a
-              href="#contact"
-              className="inline-flex gap-2 border-gradient hover:text-white transition-all hover:-translate-y-0.5 text-sm font-medium text-white/80 bg-white/5 rounded-full pt-3 pr-5 pb-3 pl-5 backdrop-blur-xl gap-x-2 gap-y-2 items-center"
-              style={{ borderRadius: '9999px' }}
-            >
-              <Icon icon="solar:play-circle-bold-duotone" width="16" height="16" />
-              Contact Us
-            </a>
-            <span
-              className="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 rounded-full opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
-              style={{
-                background: 'radial-gradient(60% 100% at 50% 50%, rgba(59,130,246,.55), rgba(59,130,246,.28) 35%, transparent 70%)',
-                filter: 'blur(10px) saturate(120%)'
-              }}
-              aria-hidden="true"
-            ></span>
-          </div>
+          {/* Button 2: OEM & Hardware Empanelment (Electric Cyan/Blue Gradient Pill) */}
+          <button
+            type="button"
+            onClick={onPartnerClick}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-blue-400 via-blue-400 to-blue-300 text-black px-8 py-3.5 text-sm font-semibold shadow-[0_4px_24px_rgba(59,130,246,0.35)] hover:opacity-90 hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer"
+            style={{ borderRadius: '9999px' }}
+          >
+            <Cpu className="h-4 w-4" />
+            <span>OEM &amp; Hardware Empanelment</span>
+          </button>
+        </div>
+
+        {/* Live Architectural Guarantee Micro-Bar */}
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 text-xs text-neutral-400 font-medium">
+          <span className="flex items-center gap-1.5 text-neutral-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            100% Air-Gapped Compute
+          </span>
+          <span className="hidden sm:inline text-neutral-600">·</span>
+          <span className="flex items-center gap-1.5 text-neutral-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-400"></span>
+            DPDP Act 2023 Shield
+          </span>
+          <span className="hidden sm:inline text-neutral-600">·</span>
+          <span className="flex items-center gap-1.5 text-neutral-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+            Sub-Second Vector Latency
+          </span>
         </div>
       </div>
     </section>

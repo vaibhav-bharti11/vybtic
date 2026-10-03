@@ -7,7 +7,7 @@ export default function TestimonialsMarquee() {
       name: "Michael Chen",
       role: "Director, Homeland Security Project",
       avatar: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4c9aa348-4474-47a8-8f1e-3fe52ac8d2b9_320w.webp",
-      text: <>Vyntic Cop AI and Video Forensics give our teams <span className="text-blue-400">sub-second evidentiary search</span> across massive multi-camera feeds.</>
+      text: <>Vyntiq Cop AI and Video Forensics give our teams <span className="text-blue-400">sub-second evidentiary search</span> across massive multi-camera feeds.</>
     },
     {
       name: "Emily Rodriguez",
@@ -19,7 +19,7 @@ export default function TestimonialsMarquee() {
       name: "David Kim",
       role: "VP of Security, Enterprise Global",
       avatar: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a90aa9b5-558b-479a-9570-1ceaa6005110_320w.jpg",
-      text: <>Vyntic sovereign architecture runs completely <span className="text-blue-400">air-gapped with zero data leakage</span>, meeting our strictest defense standards.</>
+      text: <>Vyntiq sovereign architecture runs completely <span className="text-blue-400">air-gapped with zero data leakage</span>, meeting our strictest defense standards.</>
     },
     {
       name: "Sarah Nguyen",
@@ -34,19 +34,19 @@ export default function TestimonialsMarquee() {
       name: "Jessica Park",
       role: "Chief Operations Officer, Smart Cities",
       avatar: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eae5dceb-fa80-4934-b110-86decb2f64ac_320w.webp",
-      text: <>Vyntic Video Prevention and crowd analytics delivered <span className="text-blue-400">real-time situational awareness</span> across high-density transportation hubs.</>
+      text: <>Vyntiq Video Prevention and crowd analytics delivered <span className="text-blue-400">real-time situational awareness</span> across high-density transportation hubs.</>
     },
     {
       name: "Alex Thompson",
       role: "HR Director, Defense Systems",
       avatar: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7d4bf47a-eb10-4503-a4f3-1940c4118868_320w.webp",
-      text: <>Vyntic HRMS provides sovereign payroll and personnel management tailored <span className="text-blue-400">for high-security operations</span>.</>
+      text: <>Vyntiq HRMS provides sovereign payroll and personnel management tailored <span className="text-blue-400">for high-security operations</span>.</>
     },
     {
       name: "Rachel Foster",
       role: "Executive Director, National Infrastructure",
       avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=96&h=96&fit=crop&crop=faces",
-      text: <>Vyntic stands as our primary sovereign AI platform for <span className="text-blue-400">critical infrastructure protection</span> and governance.</>
+      text: <>Vyntiq stands as our primary sovereign AI platform for <span className="text-blue-400">critical infrastructure protection</span> and governance.</>
     }
   ];
 
@@ -66,13 +66,13 @@ export default function TestimonialsMarquee() {
           <div className="mb-6">
             <div className="flex items-center justify-between text-[13px] sm:text-sm font-medium uppercase tracking-tight text-blue-400">
               <span>TRUST &amp; GOVERNANCE</span>
-              <span>(02)</span>
+              <span>(03)</span>
             </div>
             <div className="mt-2 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:items-center sm:justify-between mb-0">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl text-white text-left mt-0 tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl text-white text-left mt-0 tracking-[-0.03em]">
               Institutional trust &amp; validation
             </h2>
             <p className="text-sm sm:text-base text-slate-300 text-left max-w-[42ch]">
@@ -111,7 +111,7 @@ export default function TestimonialsMarquee() {
                       <p className="text-xs text-neutral-400">{item.role}</p>
                     </div>
                   </div>
-                  <p className="mt-4 text-sm sm:text-base text-neutral-300 tracking-tight">{item.text}</p>
+                  <p className="mt-4 text-xs sm:text-sm text-neutral-300 tracking-tight leading-relaxed">{item.text}</p>
                 </article>
               ))}
             </div>
@@ -138,7 +138,7 @@ export default function TestimonialsMarquee() {
                       <p className="text-xs text-neutral-400">{item.role}</p>
                     </div>
                   </div>
-                  <p className="mt-4 text-sm sm:text-base text-neutral-300 tracking-tight">{item.text}</p>
+                  <p className="mt-4 text-xs sm:text-sm text-neutral-300 tracking-tight leading-relaxed">{item.text}</p>
                 </article>
               ))}
             </div>
