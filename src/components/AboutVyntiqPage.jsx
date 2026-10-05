@@ -369,7 +369,7 @@ export default function AboutVyntiqPage({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {aboutData.milestones.map((m, idx) => (
+            {(aboutData.milestones || []).map((m, idx) => (
               <div key={idx} className="relative rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 border-gradient flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-2">
