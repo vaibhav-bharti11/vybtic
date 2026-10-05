@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import BentoGrid from './components/BentoGrid';
 import ProductsSection from './components/ProductsSection';
 import AboutSection from './components/AboutSection';
-import TestimonialsMarquee from './components/TestimonialsMarquee';
-import ForensicsTelemetry from './components/ForensicsTelemetry';
-import ComparisonSection from './components/ComparisonSection';
 import PartnerSection from './components/PartnerSection';
 import Footer from './components/Footer';
 import BackgroundLayers from './components/BackgroundLayers';
-import WhatsAppCTA from './components/WhatsAppCTA';
 
 import ProductDetailPage from './components/ProductDetailPage';
 import AboutVyntiqPage from './components/AboutVyntiqPage';
@@ -87,6 +82,12 @@ export default function App() {
     }, 60);
   };
 
+  const handleSelectProduct = (product) => {
+    setSelectedProduct(product);
+    setCurrentView('product-detail');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white antialiased relative selection:bg-blue-500 selection:text-white">
       <BackgroundLayers />
@@ -111,9 +112,8 @@ export default function App() {
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }, 60);
             }}
-            onSelectProduct={(prod) => setSelectedProduct(prod)}
+            onSelectProduct={handleSelectProduct}
             onRequestDemo={handleRequestDemo}
-            onPartnerClick={() => setIsPartnerOpen(true)}
           />
         ) : currentView === 'about' ? (
           <AboutVyntiqPage
@@ -125,41 +125,17 @@ export default function App() {
         ) : (
           <>
             <Hero />
-
-            <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <BentoGrid />
-            </section>
-
-            {/* Dedicated Products & Solutions Section */}
             <ProductsSection
-              onSelectProduct={(product) => {
-                setSelectedProduct(product);
-                setCurrentView('product-detail');
-              }}
+              onSelectProduct={handleSelectProduct}
               onRequestDemo={handleRequestDemo}
             />
-
-            {/* Homepage About & Leadership Glimpse */}
             <AboutSection
               onKnowMoreClick={() => handleNavigateToAbout(null)}
               onMeetLeadershipClick={() => handleNavigateToAbout('leadership')}
-              onPartnerClick={() => setIsPartnerOpen(true)}
-              onContactClick={() => handleOpenContact('Executive Leadership Briefing')}
             />
-
-            <TestimonialsMarquee />
-
-            <ForensicsTelemetry
-              onExploreClick={() => {}}
-              onRequestDemo={handleRequestDemo}
-            />
-
-            <ComparisonSection />
-
-            {/* Dedicated Partner Connect / OEM Portal Section */}
             <PartnerSection
               onPartnerClick={() => setIsPartnerOpen(true)}
-              onContactClick={() => handleOpenContact('Partner & OEM Empanelment Enquiry')}
+              onContactClick={() => handleOpenContact('Partnership Enquiry')}
             />
           </>
         )}
@@ -170,10 +146,6 @@ export default function App() {
         />
       </main>
 
-      {/* Floating WhatsApp Quick Action */}
-      <WhatsAppCTA />
-
-      {/* Modals */}
       <PartnerModal
         isOpen={isPartnerOpen}
         onClose={() => setIsPartnerOpen(false)}

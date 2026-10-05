@@ -54,3 +54,16 @@ test('the legacy About renderer tolerates the approved data shape without milest
   const source = await readFile(new URL('../src/components/AboutVyntiqPage.jsx', import.meta.url), 'utf8');
   assert.match(source, /\(aboutData\.milestones \|\| \[\]\)\.map/);
 });
+
+test('the active homepage removes noisy and unapproved sections', async () => {
+  const app = await readFile(new URL('../src/App.jsx', import.meta.url), 'utf8');
+  for (const removed of ['BentoGrid', 'TestimonialsMarquee', 'ForensicsTelemetry', 'ComparisonSection', 'WhatsAppCTA']) {
+    assert.doesNotMatch(app, new RegExp(removed));
+  }
+});
+
+test('product details explicitly support products with no approved features', async () => {
+  const detail = await readFile(new URL('../src/components/ProductDetailPage.jsx', import.meta.url), 'utf8');
+  assert.match(detail, /product\.features\.length/);
+  assert.match(detail, /Product overview pending approved copy/);
+});
