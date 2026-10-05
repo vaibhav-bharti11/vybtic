@@ -1,101 +1,67 @@
-/**
- * Vyntiq Enterprise Form & Google Sheets Submission Service
- * Handles dual-storage: local resilient cache + Google Sheets webhook sync
- */
+const SHEETS_WEBHOOK = import.meta.env.VITE_GOOGLE_SHEETS_URL || '';
 
-const DEFAULT_SHEETS_WEBHOOK = import.meta.env.VITE_GOOGLE_SHEETS_URL || "";
-
-/**
- * Submit general business or product demo enquiry
- */
-export async function submitInquiry(formData) {
-  const submission = {
-    ...formData,
-    type: 'BUSINESS_INQUIRY',
-    timestamp: new Date().toISOString(),
-    submittedAt: new Date().toLocaleString()
-  };
-
-  // 1. Resilient Local Storage Persistence
+function persist(key, submission) {
   try {
-    const existing = JSON.parse(localStorage.getItem('vyntiq_inquiries') || '[]');
-    existing.unshift(submission);
-    localStorage.setItem('vyntiq_inquiries', JSON.stringify(existing));
-  } catch (err) {
-    console.warn('LocalStorage save error:', err);
+    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+    localStorage.setItem(key, JSON.stringify([submission, ...existing]));
+  } catch (error) {
+    console.warn('Local form storage unavailable:', error);
   }
+}
 
-  // 2. Google Sheets Webhook Sync
-  if (DEFAULT_SHEETS_WEBHOOK && !DEFAULT_SHEETS_WEBHOOK.includes('REPLACE_WITH_YOUR')) {
-    try {
-      await fetch(DEFAULT_SHEETS_WEBHOOK, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName: formData.name || '',
-          email: formData.email || '',
-          phone: formData.phone || '',
-          organization: formData.organization || '',
-          solutionInterest: formData.selectedProduct || '',
-          deploymentModel: formData.enquiryType || 'General Business Enquiry',
-          notes: formData.message || '',
-          submittedAt: submission.submittedAt
-        })
-      });
-    } catch (err) {
-      console.warn('Google Sheets sync error:', err);
-    }
+async function syncToSheets(payload) {
+  if (!SHEETS_WEBHOOK || SHEETS_WEBHOOK.includes('REPLACE_WITH_YOUR')) return;
+
+  try {
+    await fetch(SHEETS_WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.warn('Google Sheets sync unavailable:', error);
   }
+}
 
+function withSubmissionMetadata(formData, type) {
+  const submittedAt = new Date().toLocaleString();
+  return {
+    ...formData,
+    type,
+    timestamp: new Date().toISOString(),
+    submittedAt,
+  };
+}
+
+export async function submitInquiry(formData) {
+  const submission = withSubmissionMetadata(formData, 'BUSINESS_INQUIRY');
+  persist('vyntiq_inquiries', submission);
+  await syncToSheets({
+    fullName: formData.name || '',
+    email: formData.email || '',
+    phone: formData.phone || '',
+    organization: formData.organization || '',
+    solutionInterest: formData.selectedProduct || '',
+    deploymentModel: formData.enquiryType || 'General Business Enquiry',
+    notes: formData.message || '',
+    submittedAt: submission.submittedAt,
+  });
   return { success: true, submission };
 }
 
-/**
- * Submit OEM & Partner Empanelment Application
- */
-export async function submitOemApplication(formData) {
-  const refId = `VYNTIQ-OEM-${Math.floor(1000 + Math.random() * 9000)}`;
-  const submission = {
-    ...formData,
-    refId,
-    type: 'OEM_EMPANELMENT',
-    statusStage: 1,
-    timestamp: new Date().toISOString(),
-    submittedAt: new Date().toLocaleString()
-  };
-
-  // 1. Resilient Local Storage Persistence
-  try {
-    const existing = JSON.parse(localStorage.getItem('vyntiq_oem_applications') || '[]');
-    existing.unshift(submission);
-    localStorage.setItem('vyntiq_oem_applications', JSON.stringify(existing));
-  } catch (err) {
-    console.warn('LocalStorage save error:', err);
-  }
-
-  // 2. Google Sheets Webhook Sync
-  if (DEFAULT_SHEETS_WEBHOOK && !DEFAULT_SHEETS_WEBHOOK.includes('REPLACE_WITH_YOUR')) {
-    try {
-      await fetch(DEFAULT_SHEETS_WEBHOOK, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName: formData.contactPerson || '',
-          email: formData.workEmail || '',
-          phone: formData.phone || '',
-          organization: formData.companyName || '',
-          solutionInterest: `OEM: ${formData.partnerTrack || ''} (${formData.hardwareArch || ''})`,
-          deploymentModel: `Scale: ${formData.deviceVolume || ''} | Ref: ${refId}`,
-          notes: `NDA: ${formData.ndaRequired ? 'Yes' : 'No'} | Details: ${formData.partnershipNotes || ''}`,
-          submittedAt: submission.submittedAt
-        })
-      });
-    } catch (err) {
-      console.warn('Google Sheets OEM sync error:', err);
-    }
-  }
-
-  return { success: true, refId, submission };
+export async function submitPartnerInquiry(formData) {
+  const submission = withSubmissionMetadata(formData, 'PARTNER_INQUIRY');
+  persist('vyntiq_partner_inquiries', submission);
+  await syncToSheets({
+    fullName: formData.name || '',
+    email: formData.email || '',
+    phone: formData.phone || '',
+    organization: formData.organization || '',
+    solutionInterest: formData.partnershipType || 'Technology partnership',
+    deploymentModel: 'Partnership enquiry',
+    notes: formData.message || '',
+    submittedAt: submission.submittedAt,
+  });
+  return { success: true, submission };
 }

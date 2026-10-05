@@ -6,6 +6,7 @@ import AboutSection from './components/AboutSection';
 import PartnerSection from './components/PartnerSection';
 import Footer from './components/Footer';
 import BackgroundLayers from './components/BackgroundLayers';
+import LinkedInCTA from './components/LinkedInCTA';
 
 import ProductDetailPage from './components/ProductDetailPage';
 import AboutVyntiqPage from './components/AboutVyntiqPage';
@@ -145,6 +146,8 @@ export default function App() {
           onContactClick={() => handleOpenContact('General Business Enquiry')}
         />
       </main>
+
+      <LinkedInCTA />
 
       <PartnerModal
         isOpen={isPartnerOpen}

@@ -1,383 +1,143 @@
-import React, { useState, useEffect } from 'react';
-import {
-  X,
-  MessageSquare,
-  Mail,
-  ArrowRight,
-  Clock3,
-  Route,
-  MessageCircle,
-  CheckCircle2,
-  Loader2,
-  Building2,
-  ShieldCheck,
-  Cpu,
-  Phone,
-  MapPin,
-  Send
-} from 'lucide-react';
-import { Icon } from '@iconify/react';
-
+import React, { useEffect, useState } from 'react';
+import { ArrowRight, CheckCircle2, Loader2, Mail, X } from 'lucide-react';
+import { productsData } from '../data/productsData';
+import { contactChannels } from '../data/siteContent';
 import { submitInquiry } from '../services/formService';
+import { validateBusinessEmail, validatePhone } from '../utils/validation';
 
-export default function ContactModal({ isOpen, onClose, initialEnquiryType = 'General Business Enquiry', initialProduct = '' }) {
-  const [formData, setFormData] = useState({
+function createForm(enquiryType, product) {
+  return {
     name: '',
     email: '',
     phone: '',
     organization: '',
-    enquiryType: initialEnquiryType,
-    selectedProduct: initialProduct || 'Complete Suite',
-    message: ''
-  });
+    enquiryType: enquiryType || 'General Business Enquiry',
+    selectedProduct: product || '',
+    message: '',
+  };
+}
 
+export default function ContactModal({ isOpen, onClose, initialEnquiryType = 'General Business Enquiry', initialProduct = '' }) {
+  const [formData, setFormData] = useState(() => createForm(initialEnquiryType, initialProduct));
+  const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
-    if (initialEnquiryType) {
-      setFormData((prev) => ({
-        ...prev,
-        enquiryType: initialEnquiryType,
-        selectedProduct: initialProduct || prev.selectedProduct
-      }));
-    }
+    if (isOpen) setFormData(createForm(initialEnquiryType, initialProduct));
   }, [initialEnquiryType, initialProduct, isOpen]);
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      await submitInquiry(formData);
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    } catch (err) {
-      console.warn("Submission error:", err);
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }
-  };
-
-  const handleReset = () => {
+  const close = () => {
+    setError('');
     setIsSuccess(false);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      organization: '',
-      enquiryType: 'General Business Enquiry',
-      selectedProduct: 'Complete Suite',
-      message: ''
-    });
     onClose();
   };
 
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!validateBusinessEmail(formData.email)) {
+      setError('Please enter a valid business email address.');
+      return;
+    }
+    if (!validatePhone(formData.phone)) {
+      setError('Please enter a valid phone number or leave it blank.');
+      return;
+    }
+
+    setError('');
+    setIsSubmitting(true);
+    try {
+      await submitInquiry(formData);
+      setIsSuccess(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-neutral-950/85 backdrop-blur-md transition-opacity animate-fade-in"
-        onClick={handleReset}
-      ></div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4">
+      <button type="button" aria-label="Close contact form" onClick={close} className="fixed inset-0 bg-neutral-950/85 backdrop-blur-sm" />
+      <section className="relative z-10 my-auto w-full max-w-3xl rounded-3xl border border-white/15 bg-neutral-900 p-6 shadow-2xl sm:p-9">
+        <button type="button" onClick={close} aria-label="Close" className="absolute right-5 top-5 rounded-full bg-white/5 p-2 text-neutral-300 hover:bg-white/10 hover:text-white">
+          <X className="h-5 w-5" />
+        </button>
 
-      {/* Modal Container */}
-      <section className="relative z-10 w-full max-w-5xl my-auto animate-fade-in">
-        <div className="relative overflow-hidden ring-1 ring-white/15 bg-neutral-900 rounded-3xl shadow-[0_25px_80px_rgba(0,0,0,0.9)]">
-          {/* Close button */}
-          <button
-            onClick={handleReset}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2 rounded-full bg-black/40 hover:bg-black/70 text-white/70 hover:text-white ring-1 ring-white/10 transition-colors"
-            aria-label="Close contact modal"
-          >
-            <X className="h-5 w-5" />
-          </button>
-
-          {/* Background Ambient Layers */}
-          <div className="absolute inset-0">
-            <img
-              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/60668e31-2150-424e-b292-05bfdda254e0_1600w.jpg"
-              alt="Abstract background"
-              className="h-full w-full object-cover opacity-30"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/95 via-black/75 to-neutral-950/80"></div>
+        {isSuccess ? (
+          <div className="py-10 text-center">
+            <CheckCircle2 className="mx-auto h-12 w-12 text-[#72A0FF]" />
+            <h2 className="mt-5 text-3xl text-white">Your enquiry is with us.</h2>
+            <p className="mt-3 text-sm text-neutral-300">The Vyntiq team will review the details and respond using the contact information you supplied.</p>
+            <button type="button" onClick={close} className="mt-7 rounded-full bg-[#2F6FEB] px-6 py-2.5 text-sm font-semibold text-white">Done</button>
           </div>
+        ) : (
+          <>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#72A0FF]">Contact Vyntiq</p>
+            <h2 className="mt-3 pr-12 text-3xl tracking-tight text-white sm:text-4xl">Tell us what you would like to explore.</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-neutral-300">
+              Request a product demonstration, discuss an implementation or start a general business conversation.
+            </p>
 
-          {/* Content */}
-          <div className="relative z-10 p-5 sm:p-8 md:p-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Form card */}
-              <div className="lg:col-span-6">
-                <div className="rounded-2xl bg-neutral-900/90 border border-white/15 backdrop-blur-xl p-5 sm:p-7 text-white shadow-2xl">
-                  {isSuccess ? (
-                    <div className="text-center py-8">
-                      <div className="mx-auto w-14 h-14 rounded-full bg-emerald-500/20 ring-1 ring-emerald-400/30 flex items-center justify-center text-emerald-400 mb-4 shadow-sm">
-                        <CheckCircle2 className="h-8 w-8" />
-                      </div>
-                      <h4 className="text-2xl font-bold tracking-tight text-white mb-2">
-                        Enquiry Received!
-                      </h4>
-                      <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-6">
-                        Thank you, <span className="font-semibold text-white">{formData.name || 'there'}</span>. Your request has been assigned to the Vyntiq Solutions Team. We will contact you within one business day with technical details.
-                      </p>
-                      <button
-                        type="button"
-                        onClick={handleReset}
-                        className="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-400 to-blue-300 text-black px-4 py-3 text-sm font-semibold hover:opacity-90 transition-all cursor-pointer"
-                      >
-                        Done
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="flex items-center justify-between mb-4">
-                        <div>
-                          <p className="text-[11px] font-semibold text-blue-400 uppercase tracking-wider">
-                            Vyntiq Enterprise &amp; Gov Desk
-                          </p>
-                          <h3 className="mt-0.5 text-2xl font-bold tracking-tight text-white">
-                            Business &amp; Project Enquiry
-                          </h3>
-                        </div>
-                        <div className="h-9 w-9 rounded-xl bg-blue-500/15 border border-blue-400/30 text-blue-300 flex items-center justify-center shadow-sm">
-                          <Send className="h-4 w-4" />
-                        </div>
-                      </div>
+            <form onSubmit={handleSubmit} className="mt-7 grid gap-4 sm:grid-cols-2">
+              <label className="text-xs font-medium text-neutral-300">
+                Your name *
+                <input required name="name" value={formData.name} onChange={handleChange} className="mt-1.5 w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-[#2F6FEB]" />
+              </label>
+              <label className="text-xs font-medium text-neutral-300">
+                Organization *
+                <input required name="organization" value={formData.organization} onChange={handleChange} className="mt-1.5 w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-[#2F6FEB]" />
+              </label>
+              <label className="text-xs font-medium text-neutral-300">
+                Business email *
+                <input required type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1.5 w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-[#2F6FEB]" />
+              </label>
+              <label className="text-xs font-medium text-neutral-300">
+                Phone (optional)
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="mt-1.5 w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-[#2F6FEB]" />
+              </label>
+              <label className="text-xs font-medium text-neutral-300 sm:col-span-2">
+                Enquiry type *
+                <select required name="enquiryType" value={formData.enquiryType} onChange={handleChange} className="mt-1.5 w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-[#2F6FEB]">
+                  <option>Request a Demo &amp; Technical Pilot</option>
+                  <option>Partnership Enquiry</option>
+                  <option>Product and Implementation Enquiry</option>
+                  <option>General Business Enquiry</option>
+                </select>
+              </label>
+              <label className="text-xs font-medium text-neutral-300 sm:col-span-2">
+                Product of interest
+                <select name="selectedProduct" value={formData.selectedProduct} onChange={handleChange} className="mt-1.5 w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-[#2F6FEB]">
+                  <option value="">Select a product (optional)</option>
+                  {productsData.map((product) => <option key={product.id}>{product.name}</option>)}
+                </select>
+              </label>
+              <label className="text-xs font-medium text-neutral-300 sm:col-span-2">
+                Message *
+                <textarea required rows={4} name="message" value={formData.message} onChange={handleChange} className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none focus:border-[#2F6FEB]" />
+              </label>
 
-                      <form onSubmit={handleSubmit} className="space-y-3.5">
-                        {/* Track Selector */}
-                        <div>
-                          <label className="block text-xs font-medium text-neutral-300 mb-1">
-                            Enquiry Category *
-                          </label>
-                          <select
-                            name="enquiryType"
-                            value={formData.enquiryType}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 text-xs text-white rounded-xl bg-black/60 border border-white/10 focus:border-blue-400 outline-none"
-                          >
-                            <option value="Request a Demo & Technical Pilot">Request a Demo &amp; Technical Pilot</option>
-                            <option value="Partner & OEM Empanelment Enquiry">Partner &amp; OEM Empanelment Enquiry</option>
-                            <option value="Enterprise Solution Deployment">Enterprise Solution Deployment</option>
-                            <option value="Government & Defense Project Tender">Government &amp; Defense Project Tender</option>
-                            <option value="DPDP Compliance Shielding Audit">DPDP Compliance Shielding Audit</option>
-                            <option value="General Business Enquiry">General Business Enquiry</option>
-                          </select>
-                        </div>
+              {error && <p className="text-sm text-rose-300 sm:col-span-2" role="alert">{error}</p>}
+              <button disabled={isSubmitting} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2F6FEB] px-6 py-3 text-sm font-semibold text-white disabled:opacity-60 sm:col-span-2">
+                {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
+                {isSubmitting ? 'Sending…' : 'Send enquiry'}
+              </button>
+            </form>
 
-                        {/* Product Selection */}
-                        <div>
-                          <label className="block text-xs font-medium text-neutral-300 mb-1">
-                            Solution of Interest
-                          </label>
-                          <select
-                            name="selectedProduct"
-                            value={formData.selectedProduct}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 text-xs text-white rounded-xl bg-black/60 border border-white/10 focus:border-blue-400 outline-none"
-                          >
-                            <option value="Complete Sovereign Suite">Complete Sovereign Suite</option>
-                            <option value="Cop AI (Tactical Public Safety)">Cop AI (Tactical Public Safety)</option>
-                            <option value="Video Forensics (Sub-Second Search)">Video Forensics (Sub-Second Search)</option>
-                            <option value="Video Prevention & Threat Detection">Video Prevention &amp; Threat Detection</option>
-                            <option value="Video Analytics (Spatial AI)">Video Analytics (Spatial AI)</option>
-                            <option value="CLM (Contract Lifecycle Management)">CLM (Contract Lifecycle Management)</option>
-                            <option value="DPDP Shield (Statutory Compliance)">DPDP Shield (Statutory Compliance)</option>
-                            <option value="HRMS Suite (Biometric & Payroll)">HRMS Suite (Biometric &amp; Payroll)</option>
-                            <option value="OEM Hardware Integration">OEM Hardware Integration</option>
-                          </select>
-                        </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-xs font-medium text-neutral-300 mb-1">
-                              Your Name *
-                            </label>
-                            <input
-                              type="text"
-                              name="name"
-                              required
-                              value={formData.name}
-                              onChange={handleChange}
-                              placeholder="Jane Doe"
-                              className="w-full px-3 py-2 text-xs text-white rounded-xl bg-black/60 border border-white/10 focus:border-blue-400 outline-none placeholder:text-neutral-500"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-medium text-neutral-300 mb-1">
-                              Organization / Agency *
-                            </label>
-                            <input
-                              type="text"
-                              name="organization"
-                              required
-                              value={formData.organization}
-                              onChange={handleChange}
-                              placeholder="e.g. Homeland Security / Tech Corp"
-                              className="w-full px-3 py-2 text-xs text-white rounded-xl bg-black/60 border border-white/10 focus:border-blue-400 outline-none placeholder:text-neutral-500"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-xs font-medium text-neutral-300 mb-1">
-                              Corporate Email *
-                            </label>
-                            <input
-                              type="email"
-                              name="email"
-                              required
-                              value={formData.email}
-                              onChange={handleChange}
-                              placeholder="you@organization.com"
-                              className="w-full px-3 py-2 text-xs text-white rounded-xl bg-black/60 border border-white/10 focus:border-blue-400 outline-none placeholder:text-neutral-500"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-medium text-neutral-300 mb-1">
-                              Phone Number *
-                            </label>
-                            <input
-                              type="tel"
-                              name="phone"
-                              required
-                              value={formData.phone}
-                              onChange={handleChange}
-                              placeholder="+91 98765 43210"
-                              className="w-full px-3 py-2 text-xs text-white rounded-xl bg-black/60 border border-white/10 focus:border-blue-400 outline-none placeholder:text-neutral-500"
-                            />
-                          </div>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-medium text-neutral-300 mb-1">
-                            Project Scope or Requirements
-                          </label>
-                          <textarea
-                            name="message"
-                            rows={3}
-                            value={formData.message}
-                            onChange={handleChange}
-                            placeholder="Tell us about camera count, deployment timeline, air-gapped specs, or tender requirements..."
-                            className="w-full px-3 py-2 text-xs text-white rounded-xl bg-black/60 border border-white/10 focus:border-blue-400 outline-none placeholder:text-neutral-500 resize-none"
-                          ></textarea>
-                        </div>
-
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-400 via-blue-400 to-blue-300 text-black px-4 py-2.5 text-xs font-semibold hover:opacity-90 transition-opacity shadow-md disabled:opacity-60 cursor-pointer"
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                              Submitting Enquiry...
-                            </>
-                          ) : (
-                            <>
-                              Submit Business Enquiry
-                              <ArrowRight className="h-3.5 w-3.5 ml-2" />
-                            </>
-                          )}
-                        </button>
-                      </form>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Corporate Information & Highlights */}
-              <div className="lg:col-span-6 pt-2 lg:pt-4 space-y-6">
-                <div>
-                  <h2 className="text-white tracking-tight text-4xl sm:text-5xl font-bold leading-tight">
-                    Start the conversation.
-                  </h2>
-                  <p className="text-sm text-neutral-300 mt-2 leading-relaxed">
-                    Direct access to Vyntiq solutions architects, sovereign AI engineers, and partner directors. Fast-tracked response within 24 hours.
-                  </p>
-                </div>
-
-                {/* Key Points */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
-                    <div className="h-8 w-8 rounded-lg bg-blue-500/15 text-blue-300 flex items-center justify-center mb-2">
-                      <Clock3 className="h-4 w-4" />
-                    </div>
-                    <h4 className="text-xs font-bold text-white">Under 24h Response</h4>
-                    <p className="text-[11px] text-neutral-400 mt-0.5">Dedicated solution architect assigned to every enterprise request.</p>
-                  </div>
-
-                  <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
-                    <div className="h-8 w-8 rounded-lg bg-emerald-500/15 text-emerald-300 flex items-center justify-center mb-2">
-                      <ShieldCheck className="h-4 w-4" />
-                    </div>
-                    <h4 className="text-xs font-bold text-white">Confidentiality &amp; NDA</h4>
-                    <p className="text-[11px] text-neutral-400 mt-0.5">Mutual NDA execution prior to tactical architecture exchanges.</p>
-                  </div>
-                </div>
-
-                {/* Corporate Details */}
-                <div className="rounded-2xl bg-black/50 border border-white/10 p-5 space-y-3">
-                  <h4 className="text-xs uppercase tracking-wider font-semibold text-blue-400">
-                    Corporate Contact Channels
-                  </h4>
-
-                  <div className="space-y-2 text-xs text-neutral-300">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-3.5 w-3.5 text-blue-400 shrink-0" />
-                      <span><strong>Sovereign Labs &amp; HQ:</strong> Vyntiq Technologies Private Limited, India</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <Mail className="h-3.5 w-3.5 text-blue-400 shrink-0" />
-                      <span><strong>Enterprise &amp; Gov Sales:</strong> contact@vyntiq.com</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <Cpu className="h-3.5 w-3.5 text-blue-400 shrink-0" />
-                      <span><strong>OEM &amp; Technology Empanelment:</strong> partners@vyntiq.com</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span><strong>DPDP &amp; Security Desk:</strong> security@vyntiq.com</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Direct WhatsApp Quick Connect */}
-                <div className="inline-flex items-center gap-3 rounded-2xl bg-white/95 backdrop-blur ring-1 ring-black/10 shadow-lg p-3 w-full sm:w-auto">
-                  <div className="h-10 w-10 rounded-xl bg-neutral-900 text-white flex items-center justify-center font-bold text-sm">
-                    VQ
-                  </div>
-                  <div className="min-w-0 pr-2">
-                    <p className="text-[10px] text-neutral-500 leading-none">Instant Channel</p>
-                    <p className="text-neutral-900 font-bold text-xs tracking-tight truncate mt-0.5">Vyntiq Executive Desk</p>
-                  </div>
-                  <a
-                    href="https://wa.me/919999999999?text=Hello%20Vyntiq%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20sovereign%20AI%20solutions%20and%20OEM%20empanelment."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-auto inline-flex items-center gap-1.5 rounded-xl bg-neutral-900 text-white px-3.5 py-2 text-xs font-semibold hover:bg-neutral-800 transition-colors"
-                  >
-                    Chat on WhatsApp
-                    <MessageCircle className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/10 pt-5 text-xs text-neutral-400">
+              {[contactChannels.general, contactChannels.contact, contactChannels.sales].map((email) => (
+                <a key={email} href={`mailto:${email}`} className="inline-flex items-center gap-1.5 hover:text-white">
+                  <Mail className="h-3.5 w-3.5 text-[#72A0FF]" />
+                  {email}
+                </a>
+              ))}
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </section>
     </div>
   );
