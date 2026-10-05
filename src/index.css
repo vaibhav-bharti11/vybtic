@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --font-brand: 'Commissioner', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-heading: 'Jost', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Work Sans', 'Segoe UI', system-ui, sans-serif;
+  --color-charcoal: #1b1f23;
+  --color-signal-blue: #2f6feb;
+  --color-paper: #eceef1;
+  --color-silver: #c9cdd2;
   --tracking-display: -0.032em;
   --tracking-heading: -0.022em;
   --tracking-body: 0.006em;
@@ -11,13 +16,12 @@
 
 @layer base {
   html {
-    font-family: var(--font-brand);
+    font-family: var(--font-body);
     font-synthesis: none;
   }
 
   body {
-    font-family: var(--font-brand);
-    font-optical-sizing: auto;
+    font-family: var(--font-body);
     font-kerning: normal;
     font-feature-settings: 'kern' 1;
     letter-spacing: var(--tracking-body);
@@ -26,9 +30,13 @@
 
   h1,
   h2,
-  h3 {
-    font-family: var(--font-brand);
-    font-weight: 650;
+  h3,
+  h4,
+  h5,
+  h6,
+  nav {
+    font-family: var(--font-heading);
+    font-weight: 500;
     text-wrap: balance;
   }
 
@@ -44,9 +52,7 @@
   h4,
   h5,
   h6 {
-    font-weight: 600;
     letter-spacing: -0.015em;
-    text-wrap: balance;
   }
 
   p,
@@ -63,9 +69,14 @@
 }
 
 .font-mono:not(pre):not(code) {
-  font-family: var(--font-brand) !important;
+  font-family: var(--font-body) !important;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.015em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal-blue);
+  outline-offset: 3px;
 }
 
 /* High Performance GPU-Accelerated Animation Keyframes */

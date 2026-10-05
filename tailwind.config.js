@@ -7,7 +7,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Commissioner', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        heading: ['Jost', 'Segoe UI', 'system-ui', 'sans-serif'],
+        sans: ['Work Sans', 'Segoe UI', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        brand: {
+          charcoal: '#1B1F23',
+          blue: '#2F6FEB',
+          paper: '#ECEEF1',
+          silver: '#C9CDD2',
+        },
       },
       keyframes: {
         fadeSlideIn: {
