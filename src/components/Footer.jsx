@@ -43,7 +43,6 @@ export default function Footer({ onLogoClick, onAboutClick, onProductsClick, onP
                   {email}
                 </a>
               ))}
-              <span className="hidden">{contactChannels.general}{contactChannels.contact}{contactChannels.sales}</span>
             </div>
 
             {externalLinks.linkedin && (

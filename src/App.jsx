@@ -119,9 +119,6 @@ export default function App() {
         ) : currentView === 'about' ? (
           <AboutVyntiqPage
             onBack={handleNavigateHome}
-            onRequestDemo={handleRequestDemo}
-            onPartnerClick={() => setIsPartnerOpen(true)}
-            onContactClick={() => handleOpenContact('Executive Leadership Briefing')}
           />
         ) : (
           <>
