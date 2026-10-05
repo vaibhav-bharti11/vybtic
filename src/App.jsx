@@ -142,8 +142,11 @@ export default function App() {
         )}
 
         <Footer
+          onLogoClick={handleNavigateHome}
+          onAboutClick={() => handleNavigateToAbout(null)}
+          onProductsClick={handleNavigateToProducts}
           onPartnerClick={() => setIsPartnerOpen(true)}
-          onContactClick={() => handleOpenContact('General Business Enquiry')}
+          onRequestDemo={() => handleRequestDemo('')}
         />
       </main>
 

@@ -6,7 +6,7 @@ import { productsData } from '../data/productsData';
 export default function ProductsSection({ onSelectProduct, onRequestDemo }) {
   return (
     <section id="products" className="relative mx-auto mt-28 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="pointer-events-none absolute -top-16 left-1/4 h-80 w-80 rounded-full bg-[#2F6FEB]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -top-16 right-4 h-80 w-80 rounded-full bg-[#2F6FEB]/10 blur-3xl sm:left-1/4 sm:right-auto" />
 
       <div className="animate-on-scroll border-b border-white/10 pb-8">
         <p className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#72A0FF]">
