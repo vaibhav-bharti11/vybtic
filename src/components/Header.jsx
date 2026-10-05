@@ -4,17 +4,17 @@ import Navbar1 from './ui/navbar-1';
 export default function Header({
   onLogoClick,
   onAboutClick,
-  onFoundersClick,
+  onProductsClick,
   onPartnerClick,
-  onContactClick
+  onRequestDemo
 }) {
   return (
     <Navbar1
       onLogoClick={onLogoClick}
       onAboutClick={onAboutClick}
-      onFoundersClick={onFoundersClick}
+      onProductsClick={onProductsClick}
       onPartnerClick={onPartnerClick}
-      onContactClick={onContactClick}
+      onRequestDemo={onRequestDemo}
     />
   );
 }

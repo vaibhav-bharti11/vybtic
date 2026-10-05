@@ -79,6 +79,14 @@ export default function App() {
     }, 60);
   };
 
+  const handleNavigateToProducts = () => {
+    setSelectedProduct(null);
+    setCurrentView('home');
+    window.setTimeout(() => {
+      document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+  };
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white antialiased relative selection:bg-blue-500 selection:text-white">
       <BackgroundLayers />
@@ -86,9 +94,9 @@ export default function App() {
       <Header
         onLogoClick={handleNavigateHome}
         onAboutClick={() => handleNavigateToAbout(null)}
-        onFoundersClick={() => handleNavigateToAbout('leadership')}
+        onProductsClick={handleNavigateToProducts}
         onPartnerClick={() => setIsPartnerOpen(true)}
-        onContactClick={() => handleOpenContact('General Business Enquiry')}
+        onRequestDemo={() => handleRequestDemo('')}
       />
 
       <main className="relative z-10">
@@ -116,10 +124,7 @@ export default function App() {
           />
         ) : (
           <>
-            <Hero
-              onPartnerClick={() => setIsPartnerOpen(true)}
-              onContactClick={() => handleOpenContact('General Business Enquiry')}
-            />
+            <Hero />
 
             <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <BentoGrid />
