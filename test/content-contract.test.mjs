@@ -50,9 +50,18 @@ test('removed catalogue and positioning terms are absent from active data', asyn
   assert.doesNotMatch(source, /HRMS|Upcoming Vyntiq Technology Solutions|Contract Lifecycle Management|OEM Empanelment/i);
 });
 
-test('the legacy About renderer tolerates the approved data shape without milestones', async () => {
-  const source = await readFile(new URL('../src/components/AboutVyntiqPage.jsx', import.meta.url), 'utf8');
-  assert.match(source, /\(aboutData\.milestones \|\| \[\]\)\.map/);
+test('About page contains client anchors and no fabricated history or card footer actions', async () => {
+  const about = await readFile(new URL('../src/components/AboutVyntiqPage.jsx', import.meta.url), 'utf8');
+  for (const id of ['what-is-vyntiq', 'mission', 'vision', 'leadership']) {
+    assert.match(about, new RegExp(`id=["']${id}["']`));
+  }
+  assert.doesNotMatch(about, /Engineering Milestones|Roadmap|Request Leadership Meeting|Vyntiq Technologies<\/span>/);
+});
+
+test('leadership cards share one alignment layout and use meaningful image alt text', async () => {
+  const about = await readFile(new URL('../src/components/AboutVyntiqPage.jsx', import.meta.url), 'utf8');
+  assert.match(about, /grid-rows-\[auto_auto_1fr\]/);
+  assert.match(about, /alt=\{`Portrait of \$\{leader\.name\}`\}/);
 });
 
 test('the active homepage removes noisy and unapproved sections', async () => {
