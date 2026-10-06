@@ -28,7 +28,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <section class="principles content-section">${about.principles.map(item => `<article><h2>${item.title}</h2><p>${item.description}</p></article>`).join('')}</section>
     ${founders()}
     ${partnerSection()}
-    <section class="contact" id="contact"><div class="contact-mark">v.</div><div><p class="kicker">The next clear step</p><h2>Tell us what is<br><em>hard to see.</em></h2><p class="contact-copy">Bring us the messy version. We will help you find the signal.</p><a class="button button-light" href="/contact">Start a conversation <span>↗</span></a></div></section>
+    <section class="contact" id="contact"><div class="contact-mark" aria-hidden="true"><img src="/assets/logo-transparent.png" alt="" width="1422" height="1106" loading="lazy"></div><div><p class="kicker">The next clear step</p><h2>Tell us what is<br><em>hard to see.</em></h2><p class="contact-copy">Bring us the messy version. We will help you find the signal.</p><a class="button button-light" href="/contact">Start a conversation <span>↗</span></a></div></section>
   </main>
   ${footer()}`;
 
@@ -179,7 +179,7 @@ function configureMotion() {
       const playhead = { frame: 0 };
       gsap.to(playhead, { frame: scrollFilm.frameCount - 1, ease: 'none', onUpdate: () => scrollFilm.setFrame(playhead.frame), scrollTrigger: { trigger: document.documentElement, start: 0, end: 'max', scrub: .3, invalidateOnRefresh: true } });
     }
-    if (document.querySelector('.contact-mark')) gsap.from('.contact-mark', { y: 80, rotation: -8, ease: 'none', scrollTrigger: { trigger: '.contact', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
+    if (document.querySelector('.contact-mark')) gsap.from('.contact-mark', { y: 60, ease: 'none', scrollTrigger: { trigger: '.contact', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
   });
 }
 
