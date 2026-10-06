@@ -34,3 +34,5 @@ lerna-debug.log*
 
 # Temporary / OS
 Thumbs.db
+tmp/
+.impeccable/

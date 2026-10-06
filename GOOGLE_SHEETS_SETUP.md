@@ -1,74 +1,31 @@
-# Google Sheets Webhook Integration for Vyntiq
+# Google Sheets enquiries
 
-The Vyntiq platform includes automatic dual-layer syncing for all form inquiries (Demo requests, Tender inquiries, and OEM Empanelment applications).
+The redesigned contact and partnership forms submit to a sheet-bound Apps Script web app. Receipt is shown only when the response confirms `result: success`. Failed submissions retain the form and offer an email fallback.
 
----
+## Spreadsheet columns
 
-## 30-Second Google Sheets Setup Guide
+Create the following nine columns in row 1:
 
-### 1. Create Your Google Sheet
-1. Open a new Google Sheet at **[sheets.new](https://sheets.new)**
-2. In **Row 1**, set up the following header columns:
-   - **Column A:** `Timestamp`
-   - **Column B:** `Full Name / Contact Person`
-   - **Column C:** `Work Email`
-   - **Column D:** `Phone Number`
-   - **Column E:** `Organization / Company`
-   - **Column F:** `Solution / Track Interest`
-   - **Column G:** `Enquiry Category / Scale`
-   - **Column H:** `Notes & Project Scope`
-   - **Column I:** `Submitted Date & Time`
+1. Timestamp
+2. Full Name / Contact Person
+3. Work Email
+4. Phone Number
+5. Organization / Company
+6. Solution / Track Interest
+7. Enquiry Category / Scale
+8. Notes & Project Scope
+9. Submitted Date & Time
 
----
+## Apps Script deployment
 
-### 2. Add Google Apps Script
-1. In your Google Sheet, click on **Extensions** > **Apps Script**.
-2. Replace all code in the editor with this script:
+From the enquiry spreadsheet, open Extensions > Apps Script. Copy [Code.gs](scripts/google-sheets/Code.gs) into the editor and save. The script is restricted to its bound spreadsheet with `@OnlyCurrentDoc`, validates required fields and writes plain text to prevent submitted values from becoming spreadsheet formulas.
 
-```javascript
-function doPost(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = JSON.parse(e.postData.contents);
+Deploy as a Web app, execute as Me, and allow Anyone to submit. The spreadsheet itself remains private. Copy the web app URL ending in `/exec`.
 
-    sheet.appendRow([
-      new Date(),
-      data.fullName || '',
-      data.email || '',
-      data.phone || '',
-      data.organization || '',
-      data.solutionInterest || '',
-      data.deploymentModel || '',
-      data.notes || '',
-      data.submittedAt || ''
-    ]);
+Set `VITE_GOOGLE_SHEETS_URL` in the repository root `.env.local` and in the hosting platform's build environment. Restart the development server after changing it and rebuild production. The root and new-site Vite commands both load environment variables from the repository root.
 
-    return ContentService.createTextOutput(JSON.stringify({ "result": "success" }))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ "result": "error", "error": err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
-```
+## Verification
 
----
+Submit a clearly labelled test enquiry from both `/contact` and `/partners`, confirm receipt in the website, and verify the rows in the sheet. A successful opaque `no-cors` request alone is not proof that Google accepted a row. The website uses a readable response and never treats a rejected request as success.
 
-### 3. Deploy Web App
-1. Click **Deploy** (top right) > **New deployment**
-2. Select type: **Web app** (gear icon)
-3. Set **Execute as:** `Me`
-4. Set **Who has access:** `Anyone` *(Crucial so the website can submit without login prompt)*
-5. Click **Deploy** and copy your **Web app URL** (`https://script.google.com/macros/s/.../exec`)
-
----
-
-### 4. Connect to Vyntiq Website
-Add your Web App URL in your `.env` file or configure it through [`src/services/formService.js`](src/services/formService.js):
-
-In `.env`:
-```env
-VITE_GOOGLE_SHEETS_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
-```
-
-*(Note: All submissions are also automatically backed up locally in browser storage under `vyntiq_inquiries` and `vyntiq_oem_applications` as a resilient fail-safe).*
+Run `npm test` for field mapping and error handling coverage, and `npm run build` for the production build. Local browser backups retain up to 100 entries under `vyntiq_inquiries` and `vyntiq_partner_inquiries`; these backups are independent of confirmed delivery to Google Sheets.

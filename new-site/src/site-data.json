@@ -1,0 +1,294 @@
+{
+  "products": [
+    {
+      "id": "credanta",
+      "name": "Credanta — Certificate Lifecycle Management",
+      "tagline": "Certificate lifecycle management",
+      "badge": "Enterprise Product",
+      "icon": "solar:document-text-bold-duotone",
+      "image": "/assets/products/clm.jpg",
+      "description": "Product overview pending approved copy.",
+      "problemSolved": "Product overview pending approved copy.",
+      "features": [],
+      "differentiators": [],
+      "targetCustomers": [],
+      "useCases": [],
+      "benefits": [],
+      "deploymentModel": "Deployment details pending approved copy.",
+      "status": "Product information awaiting client approval."
+    },
+    {
+      "id": "dpdp-shield",
+      "name": "DPDP Shield",
+      "tagline": "Privacy operations and DPDP compliance",
+      "badge": "Privacy Technology",
+      "icon": "solar:shield-check-bold-duotone",
+      "image": "/assets/products/dpdp-shield.jpg",
+      "description": "A privacy operations platform designed to help organizations manage consent, data-principal requests, sensitive-data discovery and compliance evidence.",
+      "problemSolved": "Privacy work is often spread across disconnected manual processes, making requests, records and evidence difficult to manage consistently.",
+      "features": [
+        "Consent and request workflows",
+        "Sensitive-data discovery and classification",
+        "Auditable compliance records"
+      ],
+      "differentiators": [],
+      "targetCustomers": [],
+      "useCases": [],
+      "benefits": [],
+      "deploymentModel": "Deployment options are confirmed during product discovery.",
+      "status": "Available for product discussions."
+    },
+    {
+      "id": "cop-ai",
+      "name": "CopAI",
+      "tagline": "Operational intelligence for public-safety teams",
+      "badge": "Applied AI",
+      "icon": "solar:shield-user-bold-duotone",
+      "image": "/assets/products/cop-ai.jpg",
+      "description": "An intelligent assistant for public-safety workflows, designed to help teams organize operational information and respond with greater clarity.",
+      "problemSolved": "Operational teams need a clearer way to organize fragmented information during time-sensitive public-safety work.",
+      "features": [
+        "Operational information support",
+        "Incident workflow assistance",
+        "Controlled deployment options"
+      ],
+      "differentiators": [],
+      "targetCustomers": [],
+      "useCases": [],
+      "benefits": [],
+      "deploymentModel": "Deployment is tailored to operational and security requirements.",
+      "status": "Available for product discussions."
+    },
+    {
+      "id": "crucible",
+      "name": "Crucible",
+      "tagline": "Product details will be published after client approval",
+      "badge": "Vyntiq Product",
+      "icon": "solar:layers-bold-duotone",
+      "image": "/assets/logo-emblem.png",
+      "description": "Product overview pending approved copy.",
+      "problemSolved": "Product overview pending approved copy.",
+      "features": [],
+      "differentiators": [],
+      "targetCustomers": [],
+      "useCases": [],
+      "benefits": [],
+      "deploymentModel": "Deployment details pending approved copy.",
+      "status": "Product information awaiting client approval."
+    },
+    {
+      "id": "vulcan",
+      "name": "Vulcan",
+      "tagline": "One console over every monitoring tool you already run",
+      "badge": "Network Operations",
+      "icon": "solar:monitor-smartphone-bold-duotone",
+      "image": "/assets/products/video-analytics.jpg",
+      "description": "An indigenous operations layer that reads existing monitoring tools, resolves their signals into one canonical picture and prioritizes what needs attention.",
+      "problemSolved": "Operations teams receive fragmented and duplicated signals from multiple monitoring tools, making it difficult to see the real incident and decide what needs attention.",
+      "features": [
+        "Canonical device and entity resolution",
+        "Confirmed, deduplicated and grouped alarms",
+        "Read-only integration with existing monitoring tools"
+      ],
+      "differentiators": [
+        "Deterministic and logged decision pipeline",
+        "Offline and air-gapped deployment options"
+      ],
+      "targetCustomers": [
+        "Defense and government networks",
+        "Telecom and broadband operations",
+        "Critical infrastructure operators"
+      ],
+      "useCases": [
+        "Unified network operations",
+        "Alarm reduction and incident grouping",
+        "Multi-source monitoring consolidation"
+      ],
+      "benefits": [
+        "A single operational view across existing tools",
+        "Transparent reasons for held or escalated alarms"
+      ],
+      "deploymentModel": "Offline bundle using read-only service accounts, with no required external license, update or model endpoint.",
+      "status": "Decision core in service; multi-source console prototype; additional adapters, calibrated model, operator assistant and high availability in development."
+    },
+    {
+      "id": "cctv-investigation-workbench",
+      "name": "CCTV Investigation Workbench",
+      "tagline": "Search and organize evidence across CCTV footage",
+      "badge": "Video Intelligence",
+      "icon": "solar:videocamera-record-bold-duotone",
+      "image": "/assets/products/video-forensics.jpg",
+      "description": "A video-investigation workspace for searching recorded CCTV footage and organizing relevant evidence across multiple camera sources.",
+      "problemSolved": "Investigators need a more effective way to search and organize relevant footage across multiple CCTV sources.",
+      "features": [
+        "Multi-camera search workflows",
+        "Attribute-based investigation support",
+        "Evidence review and export controls"
+      ],
+      "differentiators": [],
+      "targetCustomers": [],
+      "useCases": [],
+      "benefits": [],
+      "deploymentModel": "Deployment is tailored to the organization and its video infrastructure.",
+      "status": "Available for product discussions."
+    },
+    {
+      "id": "mukeradb",
+      "name": "MukeraDB",
+      "tagline": "Product details will be published after client approval",
+      "badge": "Data Technology",
+      "icon": "solar:database-bold-duotone",
+      "image": "/assets/logo-emblem.png",
+      "description": "Product overview pending approved copy.",
+      "problemSolved": "Product overview pending approved copy.",
+      "features": [],
+      "differentiators": [],
+      "targetCustomers": [],
+      "useCases": [],
+      "benefits": [],
+      "deploymentModel": "Deployment details pending approved copy.",
+      "status": "Product information awaiting client approval."
+    }
+  ],
+  "about": {
+    "company": {
+      "name": "Vyntiq",
+      "legalName": "Vyntiq Technologies Private Limited",
+      "motto": "Vision · Intelligence · Quality",
+      "overview": "Vyntiq is an AI-first technology company building intelligent, high-quality products and solutions that solve real-world problems and create lasting impact.",
+      "detail": "We believe the next generation of technology will not simply automate tasks — it will make systems more intelligent, adaptive and effective. At Vyntiq, we bring together AI, data, software engineering and deep technology to build products that are intelligent by design and practical by purpose."
+    },
+    "whyEstablished": {
+      "title": "Why Vyntiq exists",
+      "subtitle": "Intelligent by design. Practical by purpose.",
+      "content": "We bring together AI, data, software engineering and deep technology to build products that address meaningful challenges and create lasting value."
+    },
+    "principles": [
+      {
+        "title": "Vision",
+        "description": "Identify meaningful problems and see where technology can make a lasting difference."
+      },
+      {
+        "title": "Intelligence",
+        "description": "Build smarter, adaptive products grounded in practical purpose."
+      },
+      {
+        "title": "Quality",
+        "description": "Earn trust through efficacy, reliability, security and enduring value."
+      }
+    ],
+    "problemOpportunity": {
+      "points": [
+        {
+          "title": "Meaningful Problems",
+          "desc": "Start with challenges where intelligent technology can create lasting value."
+        },
+        {
+          "title": "Practical Products",
+          "desc": "Translate advanced engineering into products people and organizations can use."
+        },
+        {
+          "title": "Trusted Technology",
+          "desc": "Build for efficacy, reliability, security and quality."
+        },
+        {
+          "title": "Global Ambition",
+          "desc": "Begin in India while designing products for enterprises, governments and institutions worldwide."
+        }
+      ]
+    },
+    "differentiators": [
+      {
+        "title": "Vision",
+        "desc": "Identify meaningful problems.",
+        "icon": "solar:eye-bold-duotone"
+      },
+      {
+        "title": "Intelligence",
+        "desc": "Build smarter, adaptive solutions.",
+        "icon": "solar:cpu-bolt-bold-duotone"
+      },
+      {
+        "title": "Quality",
+        "desc": "Earn lasting trust through dependable products.",
+        "icon": "solar:medal-star-bold-duotone"
+      }
+    ],
+    "specializations": [
+      {
+        "title": "Artificial Intelligence",
+        "desc": "Applied intelligence designed around real operational needs."
+      },
+      {
+        "title": "Data & Software Engineering",
+        "desc": "Dependable product foundations for complex organizations."
+      },
+      {
+        "title": "Deep Technology",
+        "desc": "Purposeful engineering for demanding environments."
+      }
+    ],
+    "visionMission": {
+      "vision": {
+        "title": "Our Vision",
+        "statement": "To build technology that is intelligent, trusted and impactful — creating lasting value for the organizations and communities we serve.",
+        "detail": "We bring the vision to identify meaningful problems, the intelligence to build smarter solutions, and the commitment to quality required to earn lasting trust. We don't build technology simply because it is possible. We build it because it can make a difference."
+      },
+      "mission": {
+        "title": "Our Mission",
+        "statement": "Our focus is on creating technology products and solutions that organizations can trust — for their efficacy, reliability, security and quality. We are on a mission to become a trusted technology partner and OEM, building products that deliver meaningful value long after they are deployed.",
+        "detail": "We are intentionally not limited to a particular industry or geography. Our technology can serve governments, enterprises and institutions across domains where intelligent solutions can address meaningful challenges. Our journey begins in India, with a global ambition."
+      },
+      "objectives": []
+    },
+    "leadership": [
+      {
+        "name": "Atul Jain",
+        "role": "Co-Founder & Director",
+        "subtitle": "Enterprise Technology & AI Transformation Leader",
+        "tagline": "Enterprise technology and transformation leadership",
+        "image": "/assets/atul-jain.png",
+        "bio": "Technology and transformation leader with 15+ years of experience across enterprise technology, software engineering, quality engineering, SaaS platforms and large-scale digital transformation across Airtel Digital, Ultimate Kronos Group (UKG), and Sopra Steria. Has led complex enterprise technology initiatives spanning architectural planning through production operations. At Vyntiq, he drives technology strategy, product strategy and business execution, translating complex business challenges into scalable, dependable technology products and enterprise solutions.",
+        "focusAreas": [],
+        "philosophy": ""
+      },
+      {
+        "name": "Saiesh Singh",
+        "role": "Co-Founder & Director",
+        "subtitle": "AI Architecture, Computer Vision & Cybersecurity Leader",
+        "tagline": "AI architecture and intelligent systems leadership",
+        "image": "/assets/saiesh-singh.png",
+        "bio": "AI and technology leader with expertise across artificial intelligence, data science, cybersecurity, computer vision and intelligent systems. Has advised law enforcement and public safety organizations on video intelligence systems, turning demanding operational requirements into reliable, air-gapped software architectures. At Vyntiq, he drives AI strategy, product architecture and innovation, translating complex technology opportunities into scalable products and solutions for enterprises, government and institutions.",
+        "focusAreas": [],
+        "philosophy": ""
+      }
+    ],
+    "industryCapabilities": [
+      {
+        "sector": "Enterprises & Institutions",
+        "badge": "Enterprise",
+        "desc": "Intelligent products for privacy operations, certificate lifecycle management, data systems and business-critical workflows."
+      },
+      {
+        "sector": "Government & Public Safety",
+        "badge": "Public Sector",
+        "desc": "Applied AI and video-investigation products for organizations managing complex operational information."
+      },
+      {
+        "sector": "Telecom & Critical Infrastructure",
+        "badge": "Operations",
+        "desc": "Vulcan unifies monitoring signals and helps operations teams focus on meaningful incidents."
+      },
+      {
+        "sector": "Cross-Sector Product Innovation",
+        "badge": "Technology",
+        "desc": "AI, data and software products designed around meaningful problems rather than a single industry or geography."
+      }
+    ]
+  },
+  "contact": {
+    "general": "info@vyntiq.co.in",
+    "contact": "contact@vyntiq.co.in",
+    "sales": "sales@vyntiq.co.in"
+  }
+}

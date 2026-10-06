@@ -1,0 +1,43 @@
+{
+  "credanta": {
+    "tagline": "Keep every certificate in view, from issue to renewal.",
+    "description": "Credanta is envisioned as a certificate lifecycle workspace for teams managing the digital trust behind their services. It brings certificate ownership, validity and renewal planning into a clearer operational view, helping teams move from scattered records to a coordinated lifecycle.",
+    "problemSolved": "Certificate records can be spread across services, systems and teams. When ownership and expiry dates are difficult to trace, renewal planning becomes reactive and the continuity of important services is harder to manage.",
+    "features": ["A central inventory for certificate records and accountable owners", "Visibility into validity periods and upcoming renewals", "Coordinated issue, renewal and retirement workflows"],
+    "differentiators": ["Lifecycle context that connects certificate records to service responsibility"],
+    "targetCustomers": ["Enterprise IT and infrastructure teams", "Security and platform operations teams"],
+    "useCases": ["Certificate inventory consolidation", "Renewal planning and ownership reviews"],
+    "benefits": ["A clearer view of certificate responsibility", "More deliberate renewal planning across teams"],
+    "deploymentModel": "The deployment approach, integrations and supported certificate types will be defined during product discovery.",
+    "status": "Product concept — scope and availability to be confirmed with the Vyntiq team.",
+    "image": "/assets/products/network-infrastructure.jpg"
+  },
+  "crucible": {
+    "tagline": "Bring evidence, context and the next question together.",
+    "badge": "Investigation workspace",
+    "description": "Crucible is envisioned as a focused investigation workspace for teams working through complex evidence. It brings case material, timelines and findings into a shared context, helping investigators follow a question through to a reasoned conclusion without losing the trail behind it.",
+    "problemSolved": "Investigation material often sits across documents, notes and separate systems. As a case develops, it becomes harder to connect events, track open questions and explain how a finding was reached.",
+    "features": ["Structured case workspaces for documents, notes and findings", "Chronological views of events and investigation milestones", "Connections between evidence, questions and working conclusions", "Review and handover workflows that preserve case context"],
+    "differentiators": ["A case-centered experience designed around the reasoning trail", "Context that stays alongside findings as investigations develop"],
+    "targetCustomers": ["Investigation and public-safety teams", "Enterprise security and internal review teams"],
+    "useCases": ["Case-material organization", "Incident timeline reconstruction", "Evidence review and investigation handovers"],
+    "benefits": ["Less fragmented case context", "Clearer communication of findings and unresolved questions"],
+    "deploymentModel": "Deployment, evidence integrations and access requirements will be scoped with the organization during product discovery.",
+    "status": "Product concept — scope and availability to be confirmed with the Vyntiq team.",
+    "image": "/assets/products/crucible-concept.png"
+  },
+  "mukeradb": {
+    "tagline": "A dependable foundation for connected, useful data.",
+    "badge": "Data foundation",
+    "description": "MukeraDB is envisioned as a data foundation for organizations turning fragmented information into a dependable resource. Its proposed direction brings structure, relationships and ownership into focus, giving applications and operational teams a clearer basis for finding and using the information they need.",
+    "problemSolved": "Data spread across disconnected sources is difficult to discover, understand and maintain. Teams need a clearer view of how information is organized, who is responsible for it and where it fits in their workflows.",
+    "features": ["Structured organization of operational data", "Discoverable records and meaningful data relationships", "Clear ownership and access boundaries", "Integration pathways for applications and analytical workflows"],
+    "differentiators": ["A product direction centered on useful data context and organizational control"],
+    "targetCustomers": ["Data and software engineering teams", "Enterprise and institutional technology teams"],
+    "useCases": ["Operational data consolidation", "Application data foundations", "Preparing information for analysis and intelligent workflows"],
+    "benefits": ["More coherent information across teams and systems", "A clearer starting point for applications and analysis"],
+    "deploymentModel": "Architecture, supported workloads, integrations and deployment options will be confirmed through technical discovery.",
+    "status": "Product concept — scope and availability to be confirmed with the Vyntiq team.",
+    "image": "/assets/products/mukeradb-concept.png"
+  }
+}
