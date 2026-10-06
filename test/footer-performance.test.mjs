@@ -27,6 +27,7 @@ test('footer contains only approved destinations and contact channels', () => {
   assert.doesNotMatch(footer, /Twitter|GitHub|Roadmap|Milestone|Privacy Policy|Portal/i);
 });
 
-test('the external animation runtime is not shipped', () => {
-  assert.doesNotMatch(activeSource, /UnicornStudio|unicornstudio\.js|setInterval\(/);
+test('the animated background initializes without polling', () => {
+  assert.match(activeSource, /UnicornStudio\?\.init/);
+  assert.doesNotMatch(activeSource, /setInterval\(/);
 });

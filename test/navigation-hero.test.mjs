@@ -29,9 +29,8 @@ test('Products navigation can restore home before scrolling', () => {
   assert.match(app, /getElementById\('products'\)/);
 });
 
-test('the background has no Unicorn Studio runtime and supports safe fallbacks', () => {
-  assert.doesNotMatch(html + background, /UnicornStudio|unicornstudio\.js|data-us-project/);
-  assert.match(background, /externalLinks\.heroVideo/);
+test('the original animated background is loaded with a reduced-motion fallback', () => {
+  assert.match(html, /unicornstudio\.js/);
+  assert.match(background, /data-us-project="XxCmD31vVBmiINgvYCho"/);
   assert.match(background, /prefers-reduced-motion/);
-  assert.match(background, /<video/);
 });

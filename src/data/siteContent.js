@@ -20,5 +20,4 @@ export const contactChannels = {
 
 export const externalLinks = {
   linkedin: '',
-  heroVideo: import.meta.env.VITE_HERO_VIDEO_URL?.trim() || '',
 };
