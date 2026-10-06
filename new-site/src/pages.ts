@@ -5,7 +5,7 @@ const e = escapeHTML;
 export const productHref = (product: Product) => `/products/${product.id}`;
 export const enquiryHref = (product?: Product) => `/contact${product ? `?product=${encodeURIComponent(product.id)}&type=demo` : ''}`;
 const productArtwork = (product: Product) => ['credanta', 'vulcan'].includes(product.id) ? '/assets/products/network-infrastructure.jpg' : product.image;
-const brandLockup = '<img class="brand-emblem" src="/assets/logo-transparent.png" alt="" width="48" height="48"><b class="brand-name">vyntiq<span>®</span></b>';
+const brandLockup = '<img class="brand-emblem" src="/assets/logo-transparent.png" alt="" width="48" height="48"><b class="brand-name">vyntiq<span>™</span></b>';
 
 export function productRows(items = products) {
   return items.map((product, index) => `<a class="product-row" href="${productHref(product)}"><span class="product-index">0${index + 1}</span><span class="product-thumbnail"><img src="${productArtwork(product)}" alt="" loading="lazy"></span><span class="product-name">${e(product.name)}</span><span class="product-type">${e(product.badge)}</span><span class="product-description">${e(product.tagline)}</span><span class="product-arrow" aria-hidden="true">↗</span></a>`).join('');
