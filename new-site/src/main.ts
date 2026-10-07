@@ -5,6 +5,7 @@ import { header, footer, productRows, founders, partnerSection, renderRoute } fr
 import './styles.css';
 import { createScrollSequence } from './scroll-sequence';
 import { submitEnquiry } from './form-service.js';
+import { validateName, validateOrganization, validateEmail, validatePhone, validateMessage, validateEnquiry } from './form-validation.js';
 
 try { gsap.registerPlugin(ScrollTrigger); } catch (error) { console.error('Animation layer unavailable', error); }
 
@@ -52,12 +53,54 @@ if (sequenceCanvas) {
 }
 const scrollFilm = sequenceCanvas ? createScrollSequence(sequenceCanvas) : undefined;
 
- document.querySelector<HTMLFormElement>('.enquiry-form')?.addEventListener('submit', async (event) => {
+const enquiryForm = document.querySelector<HTMLFormElement>('.enquiry-form');
+if (enquiryForm) {
+  const fieldValidators: Record<string, (value: string) => { error: string }> = { name: validateName, organization: validateOrganization, email: validateEmail, phone: validatePhone, message: validateMessage };
+  const control = (name: string) => enquiryForm.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
+  const showError = (name: string, message: string) => {
+    const input = control(name);
+    const slot = enquiryForm.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+    if (!input || !slot) return;
+    slot.textContent = message;
+    if (message) { input.setAttribute('aria-invalid', 'true'); input.setAttribute('aria-describedby', slot.id); } else { input.removeAttribute('aria-invalid'); input.removeAttribute('aria-describedby'); }
+  };
+  const touched = new Set<string>();
+  const check = (name: string) => showError(name, fieldValidators[name](control(name)?.value ?? '').error);
+  for (const name of Object.keys(fieldValidators)) {
+    const input = control(name);
+    input?.addEventListener('blur', () => { touched.add(name); check(name); });
+    input?.addEventListener('input', () => {
+      if (name === 'phone') { const cleaned = input.value.replace(/[^\d+()\s.-]/g, ''); if (cleaned !== input.value) input.value = cleaned; }
+      if (touched.has(name)) check(name);
+    });
+  }
+}
+
+document.querySelector<HTMLFormElement>('.enquiry-form')?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const form = event.currentTarget as HTMLFormElement;
-  if (!form.reportValidity()) return;
-  const values = new FormData(form);
   const partnership = form.dataset.partnership === 'true';
+  const raw = Object.fromEntries(Array.from(new FormData(form).entries(), ([key, value]) => [key, String(value)]));
+  const optionValues = (name: string) => Array.from(form.querySelectorAll<HTMLOptionElement>(`select[name="${name}"] option`), option => option.value).filter(Boolean);
+  const checked = validateEnquiry(raw, { enquiryTypes: optionValues('enquiryType'), products: partnership ? null : optionValues('selectedProduct') });
+  form.querySelectorAll<HTMLElement>('[data-error-for]').forEach(slot => { slot.textContent = ''; });
+  for (const element of Array.from(form.querySelectorAll('[aria-invalid]'))) { element.removeAttribute('aria-invalid'); element.removeAttribute('aria-describedby'); }
+  if (!checked.valid) {
+    const note = form.querySelector<HTMLElement>('.form-note')!;
+    let first: HTMLElement | null = null;
+    for (const [name, message] of Object.entries(checked.errors)) {
+      const input = form.elements.namedItem(name) as HTMLElement | null;
+      const slot = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      if (slot) slot.textContent = message;
+      input?.setAttribute('aria-invalid', 'true');
+      if (slot) input?.setAttribute('aria-describedby', slot.id);
+      if (input && (!first || (first.compareDocumentPosition(input) & Node.DOCUMENT_POSITION_PRECEDING))) first = input;
+    }
+    note.textContent = 'Please correct the highlighted fields and try again.';
+    first?.focus();
+    return;
+  }
+  const values = { get: (key: string) => (checked.values as Record<string, string>)[key] ?? '' };
   const type = String(values.get('enquiryType') || 'General Business Enquiry');
   const product = String(values.get('selectedProduct') || '');
   const recipient = partnership ? contact.contact : type.startsWith('Request') ? contact.sales : contact.general;
@@ -71,7 +114,7 @@ const scrollFilm = sequenceCanvas ? createScrollSequence(sequenceCanvas) : undef
   button.disabled = true;
   button.textContent = 'Sending…';
   status.textContent = 'Sending your enquiry…';
-  const fields = Object.fromEntries(Array.from(values.entries(), ([key, value]) => [key, String(value)]));
+  const fields: Record<string, string> = { ...checked.values };
   try {
     const storageKey = partnership ? 'vyntiq_partner_inquiries' : 'vyntiq_inquiries';
     const existing = JSON.parse(localStorage.getItem(storageKey) || '[]');

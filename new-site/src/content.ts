@@ -1,8 +1,16 @@
 import data from './site-data.json';
-import drafts from './product-drafts.json';
-export const products = data.products.map(product => {
-  const draft = (drafts as Record<string, Partial<typeof data.products[number]>>)[product.id];
-  return { ...product, ...draft, copyStatus: draft ? 'proposed' : 'source' };
+import copy from './product-content.json';
+
+/** Product order follows the approved write-ups document. */
+const productOrder = ['credanta', 'dpdp-shield', 'vulcan', 'cop-ai', 'cctv-investigation-workbench', 'crucible', 'mukeradb'] as const;
+const artwork: Partial<Record<string, string>> = {
+  credanta: '/assets/products/network-infrastructure.jpg',
+  crucible: '/assets/products/crucible-concept.png',
+  mukeradb: '/assets/products/mukeradb-concept.png',
+};
+export const products = productOrder.map(id => {
+  const base = data.products.find(product => product.id === id)!;
+  return { id, badge: base.badge, icon: base.icon, image: artwork[id] ?? base.image, ...copy[id] };
 });
 export const about = {
   ...data.about,

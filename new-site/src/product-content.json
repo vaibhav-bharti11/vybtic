@@ -1,0 +1,317 @@
+{
+  "credanta": {
+    "name": "Credanta",
+    "tagline": "Multi-tenant certificate lifecycle management for enterprise PKI.",
+    "problem": {
+      "headline": "Certificate management is complex, fragmented and risky.",
+      "points": [
+        "Thousands of certificates across multiple CAs",
+        "Manual renewal and deployment",
+        "Expiry, outage and revocation risks",
+        "Limited visibility across tenants"
+      ]
+    },
+    "solution": {
+      "headline": "One platform for the complete certificate lifecycle.",
+      "flow": ["Discover", "Issue", "Deploy", "Renew", "Revoke"],
+      "summary": "Manage private PKI, public CAs and AD CS through a single, automated platform."
+    },
+    "why": [
+      { "title": "Multi-Tenant", "text": "Secure tenant isolation" },
+      { "title": "CA Agnostic", "text": "Private, public & AD CS" },
+      { "title": "Automated", "text": "Renewal, deployment & revocation" },
+      { "title": "Sovereign", "text": "Deploy within your infrastructure" }
+    ],
+    "useCases": [
+      "Enterprise Certificate Management",
+      "Multi-Tenant PKI Services",
+      "Device & IoT Certificates",
+      "Automated Renewal & Deployment",
+      "Certificate Discovery & Governance"
+    ],
+    "benefits": {
+      "headline": "Lower risk. Less effort. Greater control.",
+      "points": [
+        "Prevent certificate-related outages",
+        "Automate certificate operations",
+        "Gain complete certificate visibility",
+        "Strengthen security & compliance",
+        "Scale PKI across teams and customers"
+      ]
+    }
+  },
+  "dpdp-shield": {
+    "name": "DPDP Shield",
+    "tagline": "A privacy operations platform for India's DPDP Act.",
+    "problem": {
+      "headline": "Consent is easy to collect. Proving and honouring it is harder.",
+      "points": [
+        "Consent scattered across systems",
+        "Withdrawals fail to reach every data owner",
+        "Deletion and retention decisions lack evidence",
+        "Rights and grievance requests miss deadlines",
+        "Breach response starts without a complete affected-data view",
+        "No single record of what data is held, why and for how long"
+      ]
+    },
+    "solution": {
+      "headline": "One platform for the complete consent and privacy lifecycle.",
+      "flow": ["Notice", "Consent", "Withdrawal", "Action", "Confirmation", "Evidence"],
+      "summary": "Connect consent, data-subject requests, breach workflows and privacy records into one accountable, deadline-driven system."
+    },
+    "why": [
+      { "title": "Purpose-Level Consent", "text": "Clear, traceable consent by purpose" },
+      { "title": "Closed-Loop Withdrawal", "text": "Stop, act, confirm and prove" },
+      { "title": "Accountable", "text": "Named owners, approvals & escalation" },
+      { "title": "Deadline-Driven", "text": "Clocks and alerts" },
+      { "title": "Evidence-Ready", "text": "Complete, verifiable records" },
+      { "title": "Sovereign Ready", "text": "Controlled environment" }
+    ],
+    "useCases": [
+      "Consent Capture & Management",
+      "Consent Withdrawal & Downstream Action",
+      "Erasure, Access & Correction Requests",
+      "Grievance & Nomination Handling",
+      "Personal Data Breach Response",
+      "Records of Processing & Retention"
+    ],
+    "benefits": {
+      "headline": "Less guesswork. Fewer missed deadlines. Proof at every step.",
+      "points": [
+        "Prove who agreed to what and when",
+        "Close the loop on withdrawal and deletion",
+        "Keep privacy requests on schedule",
+        "Respond faster to breaches",
+        "Stay audit-ready",
+        "Keep data owners in control"
+      ]
+    }
+  },
+  "vulcan": {
+    "name": "Vulcan",
+    "tagline": "AI-driven network monitoring and incident intelligence across existing tools.",
+    "problem": {
+      "headline": "Too many monitoring tools. Too many alarms. Too little signal.",
+      "points": [
+        "Every tool has its own console and severity",
+        "One failure creates duplicate alarms",
+        "Noise hides real incidents",
+        "New tools add operational complexity",
+        "Cloud-only AIOps is unsuitable for restricted networks"
+      ]
+    },
+    "solution": {
+      "headline": "One operational view across the monitoring tools you already run.",
+      "flow": ["Connect", "Normalize", "Correlate", "Prioritize", "Respond"],
+      "summary": "Unify alarms, resolve duplicates and identify incidents deserving operator attention — without changing the underlying network."
+    },
+    "why": [
+      { "title": "Tool Agnostic", "text": "NMS, SDN, security & infrastructure sources" },
+      { "title": "One Data Model", "text": "Unified devices, alarms & severity" },
+      { "title": "Correlation", "text": "Reduce duplicates, noise & flapping" },
+      { "title": "Explainable", "text": "Every decision retains evidence" },
+      { "title": "Read-Only", "text": "Never changes the connected network" },
+      { "title": "Offline Ready", "text": "Runs within restricted environments" }
+    ],
+    "useCases": [
+      "Network Operations Centres",
+      "Telecom & Broadband Networks",
+      "Government & Defence Networks",
+      "Critical Infrastructure",
+      "Multi-Tool Enterprise Environments"
+    ],
+    "benefits": {
+      "headline": "Fewer alarms. Faster detection. Better decisions.",
+      "points": [
+        "One incident view across tools",
+        "Reduce alert fatigue and noise",
+        "Keep existing monitoring investments",
+        "Audit the reason behind every decision",
+        "Adopt safely without changing source systems",
+        "Deploy entirely within your network"
+      ]
+    }
+  },
+  "cop-ai": {
+    "name": "CopAI",
+    "tagline": "An AI investigation workspace built for Indian policing.",
+    "problem": {
+      "headline": "Investigations run on paperwork. Paperwork should not slow down justice.",
+      "points": [
+        "Complaints and case facts re-entered manually",
+        "Multiple investigation documents drafted from scratch",
+        "BNS, BNSS & BSA 2023 require current references",
+        "Statutory timelines are easy to miss",
+        "Evidence and custody paperwork can fail procedural scrutiny",
+        "Limited traceability of drafting and approval"
+      ]
+    },
+    "solution": {
+      "headline": "One workspace from complaint to charge sheet.",
+      "flow": ["Capture", "Extract", "Confirm", "Draft", "Review", "Approve"],
+      "summary": "Structure case information, draft investigation documents in departmental formats and keep legal and approval steps traceable."
+    },
+    "why": [
+      { "title": "Law-Aware", "text": "BNS, BNSS, BSA 2023 & IT Act" },
+      { "title": "Verified Citations", "text": "Checked against statute library" },
+      { "title": "Officer in Control", "text": "Nothing final without approval" },
+      { "title": "Evidence-First", "text": "Facts sourced, gaps flagged" },
+      { "title": "Sovereign Ready", "text": "On-premise & air-gapped" },
+      { "title": "Multilingual", "text": "English, Hindi & Odia" }
+    ],
+    "useCases": [
+      "Complaint & FIR Drafting",
+      "Case Diary Maintenance",
+      "Cyber & Financial Fraud Requisitions",
+      "Arrest, Remand & Court Documents",
+      "Seizure & Chain-of-Custody Paperwork",
+      "Electronic-Evidence Documentation"
+    ],
+    "benefits": {
+      "headline": "Less paperwork. Fewer lapses. Stronger cases.",
+      "points": [
+        "Reduce manual drafting time",
+        "Stay ahead of statutory timelines",
+        "Standardize procedural documents",
+        "Strengthen evidence records",
+        "Maintain a defensible audit trail",
+        "Keep investigation data under control"
+      ]
+    }
+  },
+  "cctv-investigation-workbench": {
+    "name": "CCTV Investigation Workbench",
+    "tagline": "Turns existing police CCTV footage into searchable vehicle, person and camera-health records that investigators can question in plain English.",
+    "problem": {
+      "headline": "Hours of footage. Limited time. Too much to search manually.",
+      "points": [
+        "Hours of footage searched manually",
+        "Camera failures go unnoticed",
+        "Low-resolution footage makes plates difficult to read",
+        "False automated matches can lead to wrongful action",
+        "Cross-camera movement is difficult to reconstruct"
+      ]
+    },
+    "solution": {
+      "headline": "Search, trace and investigate CCTV through one intelligent workspace.",
+      "flow": ["Ingest", "Detect", "Search", "Trace", "Review"],
+      "summary": "Turn existing camera footage into searchable vehicle, person and camera-health records with plain-English investigation queries."
+    },
+    "why": [
+      { "title": "Existing Cameras", "text": "Works with current cameras and recorders" },
+      { "title": "Plain-English Search", "text": "Search by time, place & attributes" },
+      { "title": "Cross-Camera Tracing", "text": "Follow vehicle journeys across locations" },
+      { "title": "Human Review", "text": "No automated match is final" },
+      { "title": "False-Alarm Control", "text": "Camera-specific behavioural baselines" },
+      { "title": "Evidence-Aware", "text": "Source and confidence retained" }
+    ],
+    "useCases": [
+      "Suspect Vehicle Identification",
+      "Hit-and-Run & Theft Investigations",
+      "Cross-Camera Vehicle Tracing",
+      "Stolen & Wanted Vehicle Alerts",
+      "Camera Health & Tampering Detection",
+      "Crowd & Incident Investigation"
+    ],
+    "benefits": {
+      "headline": "Search faster. Investigate smarter. Use the footage you already have.",
+      "points": [
+        "Cut manual review time",
+        "Find vehicles from partial information",
+        "Connect sightings across cameras",
+        "Reduce false alerts and unnecessary matches",
+        "Detect camera failures earlier",
+        "Preserve human judgement"
+      ]
+    }
+  },
+  "crucible": {
+    "name": "Crucible",
+    "tagline": "An agentic workspace for intelligent enterprise automation.",
+    "problem": {
+      "headline": "AI tools work in silos. Your business does not.",
+      "points": [
+        "Every AI tool has its own context",
+        "Cross-system work still needs people to carry it between tools",
+        "New automations often require custom engineering",
+        "Limited visibility and control over AI actions",
+        "Cloud-only platforms exclude restricted environments"
+      ]
+    },
+    "solution": {
+      "headline": "One workspace to connect systems, run agents and automate work.",
+      "flow": ["Connect", "Build", "Set Permissions", "Run", "Review"],
+      "summary": "Use ready-to-deploy agents, workflow automation and multi-agent orchestration in one controlled workspace."
+    },
+    "why": [
+      { "title": "Ready-to-Use Agents", "text": "Coding, CRM & workspace agents" },
+      { "title": "Workflow Builder", "text": "Automate multi-step processes" },
+      { "title": "Multi-Agent", "text": "Agents collaborate across tasks" },
+      { "title": "Controlled", "text": "Permissions and human approvals" },
+      { "title": "Local Deployment", "text": "Designed for private & air-gapped environments" }
+    ],
+    "useCases": [
+      "Engineering & Codebase Automation",
+      "Sales & CRM Operations",
+      "Cross-System Business Workflows",
+      "Enterprise Knowledge Work",
+      "Restricted & Air-Gapped Environments"
+    ],
+    "benefits": {
+      "headline": "More automation. Better control. Less context switching.",
+      "points": [
+        "One workspace for AI-driven work",
+        "Agents operate within defined boundaries",
+        "Human approval for consequential actions",
+        "Business context stays connected",
+        "Extend the platform with custom workflows",
+        "Run AI where your data and infrastructure live"
+      ]
+    }
+  },
+  "mukeradb": {
+    "name": "MukeraDB",
+    "tagline": "A managed MySQL 8.4 LTS platform with built-in resilience and control.",
+    "problem": {
+      "headline": "Database operations are fragmented. Recovery is often untested.",
+      "points": [
+        "Replication, backup and monitoring managed separately",
+        "Failover is often manual",
+        "Backups are rarely tested end-to-end",
+        "Security settings drift over time",
+        "Teams want standard MySQL without losing infrastructure control"
+      ]
+    },
+    "solution": {
+      "headline": "One control plane to operate, protect and recover MySQL.",
+      "flow": ["Provision", "Harden", "Replicate", "Protect", "Monitor", "Recover"],
+      "summary": "Standard MySQL with automated failover, backup, monitoring, hardening and centralized fleet management."
+    },
+    "why": [
+      { "title": "Standard MySQL", "text": "MySQL 8.4 LTS, no fork" },
+      { "title": "Automatic Failover", "text": "Quorum checks and fencing" },
+      { "title": "Recovery Ready", "text": "Backup and point-in-time recovery" },
+      { "title": "Security Baseline", "text": "Repeatable hardening checks" },
+      { "title": "Central Control", "text": "Fleet-wide operations and audit" },
+      { "title": "No Phone-Home", "text": "Everything stays inside your network" }
+    ],
+    "useCases": [
+      "Standardize Enterprise MySQL Estates",
+      "High-Availability Database Workloads",
+      "Backup & Point-in-Time Recovery",
+      "Database Security & Hardening",
+      "On-Premise Environments Without Cloud DB Services"
+    ],
+    "benefits": {
+      "headline": "Resilient databases. Consistent operations. Full control.",
+      "points": [
+        "Reduce database downtime risk",
+        "Automate repetitive DBA operations",
+        "Improve backup confidence and recovery",
+        "Maintain consistent security baselines",
+        "Manage many instances centrally",
+        "Keep workloads on your own infrastructure"
+      ]
+    }
+  }
+}

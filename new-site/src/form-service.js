@@ -1,8 +1,13 @@
+import { validateEnquiry } from './form-validation.js';
+
 /** @param {Record<string, string>} values */
 export async function submitEnquiry(values, endpoint, partnership = false, send = fetch) {
   if (!endpoint || !/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(endpoint)) {
     throw new Error('Google Sheets is not configured.');
   }
+  const checked = validateEnquiry(values);
+  if (!checked.valid) throw new Error(`Invalid enquiry: ${Object.keys(checked.errors).join(', ')}.`);
+  values = checked.values;
   const response = await send(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },

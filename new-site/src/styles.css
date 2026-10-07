@@ -106,3 +106,27 @@ body:not(.motion-enabled) .story-photos{display:none}body:not(.motion-enabled) .
 @keyframes backlight-breathe{0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(.96)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}}
 @media(max-width:820px){.contact-mark{font-size:inherit;margin-bottom:56px}.contact-mark img{width:min(62vw,260px)}}
 @media(prefers-reduced-motion:reduce){.contact-mark:before{animation:none}}
+
+/* Wordmark: VYNTIQ in capitals, spaced like the logo lockup */
+.wordmark .brand-name{font-weight:400;font-size:24px;letter-spacing:.3em;text-transform:uppercase;line-height:1}
+.wordmark .brand-name span{font-size:10px;letter-spacing:0;margin-left:0}
+.site-footer .wordmark .brand-name{font-size:26px}
+@media(max-width:820px){.wordmark .brand-name{font-size:19px;letter-spacing:.24em}}
+
+/* Enquiry form: inline validation */
+.enquiry-form .field-error{display:block;min-height:0;margin:0;color:#ffa3a3;font-size:13px;line-height:1.45}
+.enquiry-form .field-error:empty{display:none}
+.enquiry-form [aria-invalid="true"]{border-color:#ff8a8a}
+.enquiry-form [aria-invalid="true"]:focus{outline-color:#ff8a8a}
+.enquiry-form input::placeholder{color:#7b8490}
+
+/* Product pages: consistent write-up sections */
+.detail-copy h3{font-size:clamp(26px,2.6vw,35px);line-height:1.2;margin:0 0 28px;font-weight:500;color:#e6e9ee}
+.lifecycle{list-style:none;display:flex;flex-wrap:wrap;gap:10px 8px;padding:0;margin:0 0 30px;counter-reset:step}
+.lifecycle li{display:inline-flex;align-items:center;gap:8px;font:600 13px/1 'Work Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#d7e3fb;padding:11px 14px;border:1px solid #3c4a63;background:#232a34}
+.lifecycle li+li:before{content:'→';color:#6f9ff2;margin-right:2px;font-size:15px;letter-spacing:0;position:relative;left:-4px}
+.why-list li{display:grid;grid-template-columns:minmax(150px,.7fr) 1.3fr;gap:8px 24px;align-items:baseline}
+.why-list strong{font-weight:600;color:#fff}
+.why-list span{color:#b7c0cd}
+@media(max-width:820px){.why-list li{grid-template-columns:1fr}.lifecycle li{font-size:12px;padding:10px 12px}}
+
